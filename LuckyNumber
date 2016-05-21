@@ -1,0 +1,31 @@
+<?php
+	$range_array = array(); 
+	for( $i = 0; $i < 100; $i++){
+			$range_array[] .= $i*2+1; //generate odd numbers
+		}			
+	$index = 1;
+	luckyNumbers($range_array, $index);
+	
+  function luckyNumbers($range_array, $index) { 	
+  	$currentPointer = $range_array[$index];
+  	for ($j = 1; $j < sizeof($range_array); $j++){
+  		if($currentPointer*$j <=sizeof($range_array)){
+  	    	$index_array[] = $currentPointer*$j;
+  		}			
+  	}	
+  	for ($k = 0; $k<sizeof($index_array); $k++){	
+  		unset($range_array[$index_array[$k]-1]);
+  	}
+  	$range_array = array_values($range_array); 	
+  	$index++;
+  	if ($index<=10){
+  		return luckyNumbers($range_array, $index);
+  	}
+  	else{
+  		echo implode(",", $range_array);
+  		return false;
+  	}
+  }
+?>
+	
+
